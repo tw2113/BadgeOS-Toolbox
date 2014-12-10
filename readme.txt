@@ -1,4 +1,4 @@
-=== BadgeOS Reset Developer Add-On ===
+=== BadgeOS Toolbox Add-On ===
 Contributors: tw2113
 Tags: badge, badges, openbadges, learningtimes, credly, OBI, mozilla, open badges, achievement, award, reward, engagement, submission, nomination, API, open credit, credit, badgeOS
 Requires at least: 3.7
@@ -7,19 +7,13 @@ Stable tag: 1.0.0
 License: GNU AGPLv3
 License URL: http://www.gnu.org/licenses/agpl-3.0.html
 
-BadgeOS Add-On to reset BadgeOS data in your database.
+BadgeOS Toolbox Add-On to add extra features to a BadgeOS install.
 
 == Description ==
 
-The "BadgeOS Reset Developer Add-On" is an extension that cleans up and removes as much BadgeOS data from the your database that it can accurately detect. This way, you can "start over" with a clean database while you are developing your achievement-based website or course.
-
-This is a plugin you should not leave active longer than you need, to prevent accidentally deleting your data when you do not intend to. Also, ALWAYS back up your database before use, just to be safe.
-
-Note: This Add-on requires the free BadgeOS plugin. [Get the BadgeOS plugin](http://wordpress.org/extend/plugins/badgeos/ "BadgeOS").
-
 = Resources / Helpful Links =
 
-BadgeOS Reset Developer Add-On is made available by Michael Beckwith based on the achievement awarding suite by [LearningTimes, LLC](http://www.learningtimes.com/ "LearningTimes web site"). Here are some ways to stay connected and to see what else LearningTimes is up to:
+BadgeOS Toolbox Add-On is made available by Michael Beckwith based on the achievement awarding suite by [LearningTimes, LLC](http://www.learningtimes.com/ "LearningTimes web site"). Here are some ways to stay connected and to see what else LearningTimes is up to:
 
 * [BadgeOS.org](http://badgeos.org/ "BadgeOS web site") - Contact Us, Video Tutorials, Examples, News
 * [LearningTimes](http://www.learningtimes.com/ "LearningTimes web site") - Bringing people together through engaging online conferences, events and activities.
@@ -32,7 +26,7 @@ BadgeOS Reset Developer Add-On is made available by Michael Beckwith based on th
 
 = License Info =
 
-Michael Beckwith licenses BadgeOS Reset Developer Add-On to you under the terms of the GNU Affero General Public License, version 3, as published by the Free Software Foundation.
+Michael Beckwith licenses BadgeOS Toolbox Add-On to you under the terms of the GNU Affero General Public License, version 3, as published by the Free Software Foundation.
 
 There is NO WARRANTY for this software, express or implied, including the implied warranties of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License, version 3, at [http://www.gnu.org/licenses/agpl-3.0.html](http://www.gnu.org/licenses/agpl-3.0.html "License") for more details.
 
@@ -40,9 +34,7 @@ There is NO WARRANTY for this software, express or implied, including the implie
 
 1. First get and activate the free [BadgeOS plugin](http://wordpress.org/extend/plugins/badgeos/ "BadgeOS").
 2. Second, click on "Add New" in your Plugin Admin area in your WordPress Admin panel.
-3. Search for "BadgeOS Reset" and click "Install Now".
-4. Visit the BadgeOS settings page to check the appropriate setting and hit "Save Settings"
-
+3. Search for "BadgeOS Toolbox" and click "Install Now".
 
 == Changelog ==
 
