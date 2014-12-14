@@ -52,27 +52,33 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$set_achievements = ( isset( $instance['set_achievements'] ) ) ? (array) $instance['set_achievements'] : array();
+
+		$this->form_input_text(
+			array(
+				'label' => __( 'Title:', 'badgeos-toolkit'),
+				'name' => $this->get_field_name( 'title' ),
+				'id' => $this->get_field_id( 'title' ),
+				'value' => $instance['title']
+			)
+		);
+		$this->form_input_text(
+			array(
+				'label' => __( 'Number to display (0 = all):', 'badgeos-toolkit'),
+				'name' => $this->get_field_name( 'number' ),
+				'id' => $this->get_field_id( 'number' ),
+				'value' => $instance['number']
+			)
+		);
 		?>
-            <p>
-	            <label>
-		            <?php _e( 'Title', 'badgeos-toolkit' ); ?>:
-		            <input class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>"  type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
-	            </label>
-            </p>
 			<p>
 				<label>
-					<?php _e( 'Number to display (0 = all)', 'badgeos-toolkit' ); ?>:
-					<input class="widefat" name="<?php echo $this->get_field_name( 'number' ); ?>"  type="text" value="<?php echo absint( $instance['number'] ); ?>" />
+					<input type="checkbox" id="<?php echo $this->get_field_name( 'point_total' ); ?>" name="<?php echo $this->get_field_name( 'point_total' ); ?>" <?php checked( $instance['point_total'], 'on' ); ?> />
+					<?php _e( 'Display user\'s total points', 'badgeos-toolkit' ); ?>
 				</label>
 			</p>
 			<p>
-				<label
-					><input type="checkbox" id="<?php echo $this->get_field_name( 'point_total' ); ?>" name="<?php echo $this->get_field_name( 'point_total' ); ?>" <?php checked( $instance['point_total'], 'on' ); ?> /> <?php _e( 'Display user\'s total points', 'badgeos-toolkit' ); ?>
-				</label>
-			</p>
-			<p><?php _e( 'Display only the following Achievement Types:', 'badgeos-toolkit' ); ?><br />
+				<?php _e( 'Display only the following Achievement Types:', 'badgeos-toolkit' ); ?><br />
 				<?php
-
 				$achievements = badgeos_get_achievement_types();
 				foreach ( $achievements as $achievement_slug => $achievement ) {
 
