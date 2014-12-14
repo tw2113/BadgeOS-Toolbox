@@ -29,6 +29,13 @@ function badgeos_toolkit_register_user_achievements_list_shortcode() {
 }
 add_action( 'init', 'badgeos_toolkit_register_user_achievements_list_shortcode', 11 );
 
+/**
+ * Callback function for our user achievements list shortcode.
+ *
+ * @param array $atts Supplied shortcode attributes
+ *
+ * @return string $value HTML Output for the user achievements.
+ */
 function badgeos_toolkit_user_achievements_list_shortcode( $atts = array() ) {
 
 	// Parse our attributes
