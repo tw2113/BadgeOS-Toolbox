@@ -219,6 +219,8 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 
 				echo '</ul><!-- widget-achievements-listing -->';
 
+			} else {
+				_e( 'You have not earned any achievements yet.', 'badgeos-toolkit' );
 			}
 
 		} else {
