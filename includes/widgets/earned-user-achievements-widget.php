@@ -104,12 +104,12 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
         <?php
 	}
 
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
-		$instance['number'] = absint( $new_instance['number'] );
-		$instance['point_total'] = ( ! empty( $new_instance['point_total'] ) ) ? sanitize_text_field( $new_instance['point_total'] ) : '';
+		$instance['title']            = sanitize_text_field( $new_instance['title'] );
+		$instance['number']           = absint( $new_instance['number'] );
+		$instance['point_total']      = ( ! empty( $new_instance['point_total'] ) ) ? sanitize_text_field( $new_instance['point_total'] ) : '';
 		$instance['set_achievements'] = array_map( 'sanitize_text_field', $new_instance['set_achievements'] );
 
 		return $instance;
