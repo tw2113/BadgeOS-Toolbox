@@ -166,31 +166,53 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 					//if $set_achievements is not an array it means nothing is set so show all achievements
 					if ( ! is_array( $set_achievements ) || in_array( $achievement->post_type, $set_achievements ) ) {
 
-						//exclude step CPT entries from displaying in the widget
-						if ( get_post_type( $achievement->ID ) != 'step' ) {
+						$permalink      = get_permalink( $achievement->ID );
+						$title          = get_the_title( $achievement->ID );
+						$img_dimensions = apply_filters( 'badgeos_toolkit_widget_grid_thumb_width',
+							array(
+								'width' => '50',
+								'height' => '50',
+								'unit' => 'px'
+							)
+						);
 
-							$permalink  = get_permalink( $achievement->ID );
-							$title      = get_the_title( $achievement->ID );
-							$img        = badgeos_get_achievement_post_thumbnail( $achievement->ID, array( 50, 50 ), 'wp-post-image' );
-							$thumb      = $img ? '<a style="margin-top: -25px;" class="badgeos-item-thumb" href="'. esc_url( $permalink ) .'">' . $img .'</a>' : '';
-							$class      = 'widget-badgeos-item-title';
-							$item_class = $thumb ? ' has-thumb' : '';
+						if ( !is_array( $img_dimensions ) ) {
+							$img_dimensions = array( 'width' => '50', 'height' => '50' );
+						}
+						$img = badgeos_get_achievement_post_thumbnail( $achievement->ID, array(
+							$img_dimensions['width'],
+							$img_dimensions['height']
+						), 'wp-post-image' );
 
-							// Setup credly data if giveable
-							$giveable   = credly_is_achievement_giveable( $achievement->ID, $user_ID );
-							$item_class .= $giveable ? ' share-credly addCredly' : '';
-							$credly_ID  = $giveable ? 'data-credlyid="'. absint( $achievement->ID ) .'"' : '';
+						$class = 'widget-badgeos-item-title';
 
-							echo '<li id="widget-achievements-listing-item-'. absint( $achievement->ID ) .'" '. $credly_ID .' class="widget-achievements-listing-item'. esc_attr( $item_class ) .'">';
-							echo $thumb;
-							echo '<a class="widget-badgeos-item-title '. esc_attr( $class ) .'" href="'. esc_url( $permalink ) .'">'. esc_html( $title ) .'</a>';
-							echo '</li>';
+						// Setup credly data if giveable
+						$giveable = credly_is_achievement_giveable( $achievement->ID, $user_ID );
+						$item_class = $giveable ? 'share-credly addCredly' : '';
+						$credly_ID = $giveable ? 'data-credlyid="' . absint( $achievement->ID ) . '"' : '';
+						$style = sprintf( 'style="width: %s; height: %s;"',
+							$img_dimensions['width'] . $img_dimensions['unit'],
+							$img_dimensions['height'] . $img_dimensions['unit']
+						);
 
-							$thecount++;
+						printf( '<li id="widget-achievements-listing-item-%s" %s class="widget-achievements-listing-item %s" %s>%s</li>',
+							absint( $achievement->ID ),
+							$credly_ID,
+							esc_attr( $item_class ),
+							$style,
+							sprintf(
+								'<a class="widget-badgeos-item %s" href="%s" title="%s">%s</a>',
+								esc_attr( $class ),
+								esc_url( $permalink ),
+								esc_attr( $title ),
+								$img
+							)
+						);
 
-							if ( $thecount == $number_to_show && $number_to_show != 0 )
-								break;
+						$thecount ++;
 
+						if ( $thecount == $number_to_show && $number_to_show != 0 ) {
+							break;
 						}
 
 					}
