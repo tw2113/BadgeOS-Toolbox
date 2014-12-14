@@ -11,9 +11,36 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 
 		$widget_ops = array(
 			'classname' => 'badgeos_toolkit_earned_user_achievements_class',
-			'description' => __( 'Displays all achievements earned by the logged in user', 'badgeos-toolkit' )
+			'description' => __( 'Displays all achievements earned by the logged in user in a grid layout', 'badgeos-toolkit' )
 		);
-		parent::__construct( 'badgeos_toolkit_earned_user_achievements_widget', __( 'BadgeOS ToolKit Earned User Achievements', 'badgeos-toolkit' ), $widget_ops );
+		parent::__construct( 'badgeos_toolkit_earned_user_achievements_widget', __( 'BadgeOS ToolKit Grid Earned User Achievements', 'badgeos-toolkit' ), $widget_ops );
+
+		if ( is_active_widget( false, false, $this->id_base ) ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'styles_scripts' ) );
+		}
+	}
+
+	public function styles_scripts() {
+		wp_register_style( 'badgeos-toolkit', $this->directory_url . '/css/badgeos-toolkit.css', array( 'badgeos-widget' ) );
+
+		wp_enqueue_script( 'badgeos-achievements' );
+		wp_enqueue_style( 'badgeos-widget' );
+		wp_enqueue_style( 'badgeos-toolkit' );
+	}
+
+	public function form_input_text( $args = array() ) {
+		$label = esc_attr( $args['label'] );
+		$name  = esc_attr( $args['name'] );
+		$id    = esc_attr( $args['id'] );
+		$value = esc_attr( $args['value'] );
+
+		printf(
+			'<p><label for="%1$s">%2$s</label><input type="text" class="widefat" name="%3$s" id="%1$s" value="%4$s" /></p>',
+			$id,
+			$label,
+			$name,
+			$value
+		);
 	}
 
 	function form( $instance ) {
