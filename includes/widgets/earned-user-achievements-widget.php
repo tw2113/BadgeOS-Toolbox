@@ -1,10 +1,21 @@
 <?php
 
+/**
+ * Class toolkit_earned_user_achievements_grid_widget.
+ *
+ * Create our user achievements grid widget.
+ *
+ * @since 1.0.0
+ */
 class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 
 	public $directory_url = '';
 
-	//process the new widget
+	/**
+	 * Put everything together.
+	 *
+	 * @since 1.0.0
+	 */
 	public function __construct() {
 		global $toolbox;
 		$this->directory_url  = $toolbox->directory_url;
@@ -20,6 +31,11 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		}
 	}
 
+	/**
+	 * Enqueue any necessary stylesheets or scripts.
+	 *
+	 * @since 1.0.0
+	 */
 	public function styles_scripts() {
 		wp_register_style( 'badgeos-toolkit', $this->directory_url . '/css/badgeos-toolkit.css', array( 'badgeos-widget' ) );
 
@@ -28,6 +44,15 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		wp_enqueue_style( 'badgeos-toolkit' );
 	}
 
+	/**
+	 * Helper function for widget form() method display.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $args Arguments to be used with the input type output.
+	 *
+	 * @return string $value HTML output for the input type.
+	 */
 	public function form_input_text( $args = array() ) {
 		$label = esc_attr( $args['label'] );
 		$name  = esc_attr( $args['name'] );
@@ -43,6 +68,13 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		);
 	}
 
+	/**
+	 * Output our form for the WP Admin.
+	 *
+	 * @param array $instance Values for our current widget instance.
+	 *
+	 * @return string HTML output for the form method.
+	 */
 	public function form( $instance ) {
 		$defaults = array(
 			'title' => __( 'My Achievements', 'badgeos' ),
@@ -104,6 +136,14 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
         <?php
 	}
 
+	/**
+	 * Update our widget values.
+	 *
+	 * @param array $new_instance Newly entered widget data.
+	 * @param array $old_instance Current values for widget data.
+	 *
+	 * @return array $instance Sanitized new data to save.
+	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
@@ -115,6 +155,12 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Output the frontend widget display.
+	 *
+	 * @param array $args     Widget arguments from theme settings.
+	 * @param array $instance Values for our current widget instance.
+	 */
 	public function widget( $args, $instance ) {
 		global $user_ID;
 
