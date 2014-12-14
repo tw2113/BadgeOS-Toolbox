@@ -54,6 +54,9 @@ function badgeos_toolkit_user_achievements_list_shortcode( $atts = array() ) {
 
 	$output .= '<div class="badgeos-user-badges-wrap">';
 
+	$thumbnail_size    = apply_filters( 'badgeos_toolkit_user_list_thumb_size', 'badgeos-achievement' );
+	$thumbnail_classes = apply_filters( 'badgeos_toolkit_user_list_classes', '' );
+
 	// Loop through the achievements
 	if ( ! empty( $achievement_ids ) ) {
 		foreach ( $achievement_ids as $achievement_id ) {
@@ -62,9 +65,6 @@ function badgeos_toolkit_user_achievements_list_shortcode( $atts = array() ) {
 			if ( 'all' != $atts['limit'] && $count >= $atts['limit'] ) {
 				break;
 			}
-
-			$thumbnail_size    = apply_filters( 'badgeos_toolkit_user_list_thumb_size', 'badgeos-achievement' );
-			$thumbnail_classes = apply_filters( 'badgeos_toolkit_user_list_classes', '' );
 
 			// Output our achievement image and title
 			$output .= '<div class="badgeos-badge-wrap">';
