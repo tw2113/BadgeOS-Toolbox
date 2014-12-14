@@ -43,7 +43,7 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		);
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 		$defaults = array(
 			'title' => __( 'My Achievements', 'badgeos' ),
 			'number' => '10',
