@@ -154,7 +154,7 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 				//show most recently earned achievement first
 				$achievements = array_reverse( $achievements );
 
-				echo '<ul class="widget-achievements-listing">';
+				echo '<ul class="widget-achievements-listing grid">';
 				foreach ( $achievements as $achievement ) {
 
 					//verify achievement type is set to display in the widget settings
