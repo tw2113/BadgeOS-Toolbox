@@ -157,6 +157,11 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 				echo '<ul class="widget-achievements-listing grid">';
 				foreach ( $achievements as $achievement ) {
 
+					//exclude step CPT entries from displaying in the widget
+					if ( get_post_type( $achievement->ID ) == 'step' ) {
+						continue;
+					}
+
 					//verify achievement type is set to display in the widget settings
 					//if $set_achievements is not an array it means nothing is set so show all achievements
 					if ( ! is_array( $set_achievements ) || in_array( $achievement->post_type, $set_achievements ) ) {
