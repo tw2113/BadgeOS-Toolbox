@@ -5,7 +5,10 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 	public $directory_url = '';
 
 	//process the new widget
-	function __construct() {
+	public function __construct() {
+		global $toolbox;
+		$this->directory_url  = $toolbox->directory_url;
+
 		$widget_ops = array(
 			'classname' => 'badgeos_toolkit_earned_user_achievements_class',
 			'description' => __( 'Displays all achievements earned by the logged in user', 'badgeos-toolkit' )
