@@ -146,10 +146,7 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 			if ( is_array( $achievements ) && ! empty( $achievements ) ) {
 
 				$number_to_show = absint( $instance['number'] );
-				$thecount = 0;
-
-				wp_enqueue_script( 'badgeos-achievements' );
-				wp_enqueue_style( 'badgeos-widget' );
+				$thecount       = 0;
 
 				//load widget setting for achievement types to display
 				$set_achievements = ( isset( $instance['set_achievements'] ) ) ? $instance['set_achievements'] : '';
