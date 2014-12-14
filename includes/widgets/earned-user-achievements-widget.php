@@ -115,7 +115,7 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 		return $instance;
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		global $user_ID;
 
 		#$user_output = apply_filters( 'badgeos_toolkit_user_achievements_widget_output', '', $args, $instance );
@@ -124,7 +124,9 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
-		if ( !empty( $title ) ) { echo $args['before_title'] . $title . $args['after_title']; };
+		if ( !empty( $title ) ) {
+			echo $args['before_title'] . $title . $args['after_title'];
+		};
 
 		//user must be logged in to view earned badges and points
 		if ( is_user_logged_in() ) {
