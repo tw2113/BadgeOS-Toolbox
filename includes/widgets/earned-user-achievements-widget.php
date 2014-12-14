@@ -80,6 +80,8 @@ class toolkit_earned_user_achievements_widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		global $user_ID;
 
+		#$user_output = apply_filters( 'badgeos_toolkit_user_achievements_widget_output', '', $args, $instance );
+
 		echo $args['before_widget'];
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
