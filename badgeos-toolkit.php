@@ -103,6 +103,7 @@ class BadgeOS_Toolkit {
 	}
 
 	public function includes() {
+		require_once $this->directory_path . 'includes/achievement-functions.php';
 		require_once $this->directory_path . 'includes/shortcodes/badgeos_user_achievements_list.php';
 		require_once $this->directory_path . 'includes/widgets.php';
 	}
