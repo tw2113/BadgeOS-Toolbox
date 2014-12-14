@@ -1,0 +1,8 @@
+.grid .widget-achievements-listing-item {
+	float: left;
+}
+.grid .widget-achievements-listing-item a {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
