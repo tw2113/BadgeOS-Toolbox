@@ -214,7 +214,6 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 						if ( $thecount == $number_to_show && $number_to_show != 0 ) {
 							break;
 						}
-
 					}
 				}
 
@@ -223,13 +222,9 @@ class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
 			}
 
 		} else {
-
-			//user is not logged in so display a message
 			_e( 'You must be logged in to view earned achievements', 'badgeos-toolkit' );
-
 		}
 
 		echo $args['after_widget'];
 	}
-
 }
