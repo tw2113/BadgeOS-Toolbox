@@ -36,7 +36,7 @@ class BadgeOS_Toolkit {
 
 	public $basename = '';
 	public $directory_path = '';
-	public $directory_uri = '';
+	public $directory_url = '';
 
 	/**
 	 * Get everything running.
