@@ -1,6 +1,8 @@
 <?php
-//widget displays achievements earned for the logged in user
-class toolkit_earned_user_achievements_widget extends WP_Widget {
+
+class toolkit_earned_user_achievements_grid_widget extends WP_Widget {
+
+	public $directory_url = '';
 
 	//process the new widget
 	function __construct() {
