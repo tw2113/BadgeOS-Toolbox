@@ -77,7 +77,6 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 			'achievement_ids' => '',
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
-		$set_achievements = ( isset( $instance['set_achievements'] ) ) ? (array) $instance['set_achievements'] : array();
 
 		$this->form_input_text(
 			array(
