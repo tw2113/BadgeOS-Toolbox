@@ -73,10 +73,8 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		$defaults = array(
-			'title' => __( 'My Achievements', 'badgeos' ),
-			'number' => '10',
-			'point_total' => '',
-			'set_achievements' => ''
+			'title' => __( 'Achievement Earners', 'badgeos' ),
+			'achievement_ids' => '',
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$set_achievements = ( isset( $instance['set_achievements'] ) ) ? (array) $instance['set_achievements'] : array();
