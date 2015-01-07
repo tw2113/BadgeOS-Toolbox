@@ -118,7 +118,7 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 						continue;
 					}
 
-					//if achievement displaying exists in the saved array it is enabled for display
+					# if achievement displaying exists in the saved array it is enabled for display
 					$checked = checked( in_array( $achievement_slug, $set_achievements ), true, false );
 
 					printf(
@@ -174,10 +174,10 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		};
 
-		//user must be logged in to view earned badges and points
+		# user must be logged in to view earned badges and points
 		if ( is_user_logged_in() ) {
 
-			//display user's points if widget option is enabled
+			# display user's points if widget option is enabled
 			if ( $instance['point_total'] == 'on' ) {
 				printf( '<p class="badgeos-total-points">%s</p>',
 					sprintf(
@@ -194,22 +194,22 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 				$number_to_show = absint( $instance['number'] );
 				$thecount       = 0;
 
-				//load widget setting for achievement types to display
+				# load widget setting for achievement types to display
 				$set_achievements = ( isset( $instance['set_achievements'] ) ) ? $instance['set_achievements'] : '';
 
-				//show most recently earned achievement first
+				# show most recently earned achievement first
 				$achievements = array_reverse( $achievements );
 
 				echo '<ul class="widget-achievements-listing grid">';
 				foreach ( $achievements as $achievement ) {
 
-					//exclude step CPT entries from displaying in the widget
+					# exclude step CPT entries from displaying in the widget
 					if ( get_post_type( $achievement->ID ) == 'step' ) {
 						continue;
 					}
 
-					//verify achievement type is set to display in the widget settings
-					//if $set_achievements is not an array it means nothing is set so show all achievements
+					# verify achievement type is set to display in the widget settings
+					# if $set_achievements is not an array it means nothing is set so show all achievements
 					if ( ! is_array( $set_achievements ) || in_array( $achievement->post_type, $set_achievements ) ) {
 
 						$permalink      = get_permalink( $achievement->ID );
@@ -232,7 +232,7 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 
 						$class = 'widget-badgeos-item-title';
 
-						// Setup credly data if giveable
+						# Setup credly data if giveable
 						$giveable = credly_is_achievement_giveable( $achievement->ID, $user_ID );
 						$item_class = $giveable ? 'share-credly addCredly' : '';
 						$credly_ID = $giveable ? 'data-credlyid="' . absint( $achievement->ID ) . '"' : '';
