@@ -120,9 +120,6 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 	 * @param array $instance Values for our current widget instance.
 	 */
 	public function widget( $args, $instance ) {
-		global $user_ID;
-
-		#$user_output = apply_filters( 'badgeos_toolkit_user_achievements_widget_output', '', $args, $instance );
 
 		echo $args['before_widget'];
 
