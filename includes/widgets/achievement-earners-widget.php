@@ -21,10 +21,10 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 		$this->directory_url  = $toolbox->directory_url;
 
 		$widget_ops = array(
-			'classname' => 'badgeos_toolkit_earned_user_achievements_class',
-			'description' => __( 'Displays all achievements earned by the logged in user in a grid layout', 'badgeos-toolkit' )
+			'classname' => 'badgeos_toolkit_achievement_earners_class',
+			'description' => __( 'Displays all earners of specified achievements.', 'badgeos-toolkit' )
 		);
-		parent::__construct( 'badgeos_toolkit_earned_user_achievements_widget', __( 'BadgeOS ToolKit Grid Earned User Achievements', 'badgeos-toolkit' ), $widget_ops );
+		parent::__construct( 'toolkit_achievement_earners_widget', __( 'BadgeOS ToolKit Achievement Earners List', 'badgeos-toolkit' ), $widget_ops );
 
 		if ( is_active_widget( false, false, $this->id_base ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'styles_scripts' ) );
