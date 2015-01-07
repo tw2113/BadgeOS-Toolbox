@@ -108,9 +108,7 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 		$instance = $old_instance;
 
 		$instance['title']            = sanitize_text_field( $new_instance['title'] );
-		$instance['number']           = absint( $new_instance['number'] );
-		$instance['point_total']      = ( ! empty( $new_instance['point_total'] ) ) ? sanitize_text_field( $new_instance['point_total'] ) : '';
-		$instance['set_achievements'] = array_map( 'sanitize_text_field', $new_instance['set_achievements'] );
+		$instance['achievement_ids']  = sanitize_text_field( $new_instance['achievement_ids'] );
 
 		return $instance;
 	}
