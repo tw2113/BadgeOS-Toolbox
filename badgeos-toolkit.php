@@ -45,12 +45,12 @@ class BadgeOS_Toolkit {
 	 */
 	function __construct() {
 
-		// Define plugin constants
+		# Define plugin constants
 		$this->basename       = plugin_basename( __FILE__ );
 		$this->directory_path = plugin_dir_path( __FILE__ );
 		$this->directory_url  = plugins_url( dirname( $this->basename ) );
 
-		// Load translations
+		# Load translations
 		load_plugin_textdomain( 'badgeos-toolkit', false, dirname( $this->basename ) . '/languages' );
 
 		add_action( 'admin_notices', array( $this, 'maybe_disable_plugin' ) );
@@ -88,14 +88,14 @@ class BadgeOS_Toolkit {
 
 		if ( ! $this->meets_requirements() ) {
 
-			// Display our error
+			# Display our error
 			?>
 			<div id="message" class="error">
 			<p><?php printf( __( 'BadgeOS Toolkit requires BadgeOS and has been <a href="%s">deactivated</a>. Please install and activate BadgeOS and then reactivate this plugin.', 'badgeos-toolkit' ), admin_url( 'plugins.php' ) ); ?></p>
 			</div>
 
 			<?php
-			// Deactivate our plugin
+			# Deactivate our plugin
 			deactivate_plugins( $this->basename );
 
 		}
@@ -104,6 +104,8 @@ class BadgeOS_Toolkit {
 
 	public function includes() {
 		require_once $this->directory_path . 'includes/achievement-functions.php';
+
+		# Shortcodes
 		require_once $this->directory_path . 'includes/shortcodes/badgeos_user_achievements_list.php';
 		require_once $this->directory_path . 'includes/widgets.php';
 	}
