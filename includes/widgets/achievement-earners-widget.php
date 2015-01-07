@@ -132,19 +132,7 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 		# user must be logged in to view earned badges and points
 		if ( is_user_logged_in() ) {
 
-			# display user's points if widget option is enabled
-			if ( $instance['point_total'] == 'on' ) {
-				printf( '<p class="badgeos-total-points">%s</p>',
-					sprintf(
-						__( 'My Total Points: %s', 'badgeos-toolkit' ),
-						'<strong>' . number_format( badgeos_get_users_points() ) . '</strong>'
-					)
-				);
-			}
-
-			$achievements = badgeos_get_user_achievements();
-
-			if ( is_array( $achievements ) && ! empty( $achievements ) ) {
+			$achievement_ids = array_map( 'trim', explode( ',', $instance['achievement_ids'] ) );
 
 				$number_to_show = absint( $instance['number'] );
 				$thecount       = 0;
