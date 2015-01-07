@@ -37,11 +37,7 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 	 * @since 1.0.0
 	 */
 	public function styles_scripts() {
-		wp_register_style( 'badgeos-toolkit', $this->directory_url . '/css/badgeos-toolkit.css', array( 'badgeos-widget' ) );
 
-		wp_enqueue_script( 'badgeos-achievements' );
-		wp_enqueue_style( 'badgeos-widget' );
-		wp_enqueue_style( 'badgeos-toolkit' );
 	}
 
 	/**
