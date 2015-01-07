@@ -9,7 +9,7 @@ function badgeos_toolkit_register_user_achievements_list_shortcode() {
 
 	badgeos_register_shortcode( array(
 		'name'            => __( 'User Achievements List', 'badgeos-toolkit' ),
-		'slug'            => 'badgeos_user_achievements_list',
+		'slug'            => 'badgeos_toolkit_user_achievements_list',
 		'output_callback' => 'badgeos_toolkit_user_achievements_list_shortcode',
 		'description'     => __( 'Render a list of user achievements.', 'badgeos-toolkit' ),
 		'attributes'      => array(
