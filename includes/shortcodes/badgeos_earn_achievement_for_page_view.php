@@ -11,7 +11,7 @@ function badgeos_toolkit_register_earn_achievement_for_page_view_shortcode() {
 		'name'            => __( 'Earn Achievement For Page View', 'badgeos-toolkit' ),
 		'slug'            => 'badgeos_toolkit_earn_achievement_for_page_view',
 		'output_callback' => 'badgeos_toolkit_earn_achievement_for_page_view_shortcode',
-		'description'     => __( 'Award an achievement for viewing a specified post or page.', 'badgeos-toolkit' ),
+		'description'     => __( 'Award an achievement for viewing a specific post or page.', 'badgeos-toolkit' ),
 		'attributes'      => array(
 			'achievement_id' => array(
 				'name'        => __( 'Achievement ID', 'badgeos-toolkit' ),
