@@ -108,6 +108,7 @@ class BadgeOS_Toolkit {
 		# Shortcodes
 		require_once $this->directory_path . 'includes/shortcodes/badgeos_user_achievements_list.php';
 		require_once $this->directory_path . 'includes/shortcodes/badgeos_achievement_link.php';
+		require_once $this->directory_path . 'includes/shortcodes/badgeos_earn_achievement_for_page_view.php';
 
 		# Widgets
 		require_once $this->directory_path . 'includes/widgets.php';
