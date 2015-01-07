@@ -134,86 +134,58 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 
 			$achievement_ids = array_map( 'trim', explode( ',', $instance['achievement_ids'] ) );
 
-				$number_to_show = absint( $instance['number'] );
-				$thecount       = 0;
+			if ( is_array( $achievement_ids ) && ! empty( $achievement_ids ) ) {
 
-				# load widget setting for achievement types to display
-				$set_achievements = ( isset( $instance['set_achievements'] ) ) ? $instance['set_achievements'] : '';
+				$output = '';
+				foreach ( $achievement_ids as $achievement_id ) {
 
-				# show most recently earned achievement first
-				$achievements = array_reverse( $achievements );
+					$output .= '<h3>' . get_the_title( $achievement_id ) . '</h3>';
+					$earners = badgeos_get_achievement_earners( $achievement_id );
 
-				echo '<ul class="widget-achievements-listing grid">';
-				foreach ( $achievements as $achievement ) {
+					$output .= '<ul class="badgeos-toolkit-achievement-earners-list achievement-' . $achievement_id . '-earners-list">';
+					foreach ( $earners as $user ) {
+						$user_content = '<li><a href="' . get_author_posts_url( $user->ID ) . '">' . get_avatar( $user->ID ) . '</a></li>';
 
-					# exclude step CPT entries from displaying in the widget
-					if ( get_post_type( $achievement->ID ) == 'step' ) {
-						continue;
+						/**
+						 * Fitlers the markup for the individual user being rendered.
+						 *
+						 * @since 1.0.0
+						 *
+						 * @param string $user_content HTML markup being rendered.
+						 * @param int    $ID           User ID being rendered.
+						 */
+						$output .= apply_filters( 'badgeos_toolkit_get_achievement_earners_list_user', $user_content, $user->ID );
 					}
+					$output .= '</ul>';
 
-					# verify achievement type is set to display in the widget settings
-					# if $set_achievements is not an array it means nothing is set so show all achievements
-					if ( ! is_array( $set_achievements ) || in_array( $achievement->post_type, $set_achievements ) ) {
-
-						$permalink      = get_permalink( $achievement->ID );
-						$title          = get_the_title( $achievement->ID );
-						$img_dimensions = apply_filters( 'badgeos_toolkit_widget_grid_thumb_width',
-							array(
-								'width' => '50',
-								'height' => '50',
-								'unit' => 'px'
-							)
-						);
-
-						if ( !is_array( $img_dimensions ) ) {
-							$img_dimensions = array( 'width' => '50', 'height' => '50' );
-						}
-						$img = badgeos_get_achievement_post_thumbnail( $achievement->ID, array(
-							$img_dimensions['width'],
-							$img_dimensions['height']
-						), 'wp-post-image' );
-
-						$class = 'widget-badgeos-item-title';
-
-						# Setup credly data if giveable
-						$giveable = credly_is_achievement_giveable( $achievement->ID, $user_ID );
-						$item_class = $giveable ? 'share-credly addCredly' : '';
-						$credly_ID = $giveable ? 'data-credlyid="' . absint( $achievement->ID ) . '"' : '';
-						$style = sprintf( 'style="width: %s; height: %s;"',
-							$img_dimensions['width'] . $img_dimensions['unit'],
-							$img_dimensions['height'] . $img_dimensions['unit']
-						);
-
-						printf( '<li id="widget-achievements-listing-item-%s" %s class="widget-achievements-listing-item %s" %s>%s</li>',
-							absint( $achievement->ID ),
-							$credly_ID,
-							esc_attr( $item_class ),
-							$style,
-							sprintf(
-								'<a class="widget-badgeos-item %s" href="%s" title="%s">%s</a>',
-								esc_attr( $class ),
-								esc_url( $permalink ),
-								esc_attr( $title ),
-								$img
-							)
-						);
-
-						$thecount ++;
-
-						if ( $thecount == $number_to_show && $number_to_show != 0 ) {
-							break;
-						}
-					}
+					/**
+					 * Filters the markup for the individual achievement list.
+					 *
+					 * @since 1.0.0
+					 *
+					 * @param string $output HTML markup being rendered fr the achievement.
+					 * @param int    $achievement_id ID of the achievement the HTML was for.
+					 * @param array  $achievement_ids Array of all IDs specified for the widget.
+					 * @param array  $earners Array of users who earned the specified achievement.
+					 */
+					$output = apply_filters( 'badgeos_toolkit_get_achievement_earners_achievement_list', $output, $achievement_id, $achievement_ids, $earners );
 				}
 
-				echo '</ul><!-- widget-achievements-listing -->';
-
+				/**
+				 * Filters the markup for the complete achievements list.
+				 *
+				 * @since 1.0.0
+				 *
+				 * @param string $output HTML markup being rendered fr the achievement.x
+				 * @param array  $achievement_ids Array of all IDs specified for the widget.
+				 */
+				echo apply_filters( 'badgeos_toolkit_get_achievement_earners_list', $output, $achievement_ids );
 			} else {
-				_e( 'You have not earned any achievements yet.', 'badgeos-toolkit' );
+				_e( 'No one has earned any of the specified achievements yet.', 'badgeos-toolkit' );
 			}
 
 		} else {
-			_e( 'You must be logged in to view earned achievements', 'badgeos-toolkit' );
+			_e( 'You must be logged in to view achievement earners', 'badgeos-toolkit' );
 		}
 
 		echo $args['after_widget'];
