@@ -38,7 +38,6 @@ add_action( 'init', 'badgeos_toolkit_register_user_achievements_list_shortcode',
  */
 function badgeos_toolkit_user_achievements_list_shortcode( $atts = array() ) {
 
-	// Parse our attributes
 	$atts = shortcode_atts( array(
 		'user'  => get_current_user_id(),
 		'limit' => 5
@@ -46,10 +45,9 @@ function badgeos_toolkit_user_achievements_list_shortcode( $atts = array() ) {
 
 	$output = '';
 
-	// Grab the user's current achievements, without duplicates
+	# Grab the user's current achievements, without duplicates
 	$achievement_ids = array_unique( badgeos_get_user_earned_achievement_ids( $atts['user'] ) );
 
-	// Setup a counter
 	$count = 0;
 
 	$output .= '<div class="badgeos-user-badges-wrap">';
@@ -57,22 +55,19 @@ function badgeos_toolkit_user_achievements_list_shortcode( $atts = array() ) {
 	$thumbnail_size    = apply_filters( 'badgeos_toolkit_user_list_thumb_size', 'badgeos-achievement' );
 	$thumbnail_classes = apply_filters( 'badgeos_toolkit_user_list_classes', '' );
 
-	// Loop through the achievements
 	if ( ! empty( $achievement_ids ) ) {
 		foreach ( $achievement_ids as $achievement_id ) {
 
-			// If we've hit our limit, quit
+			# If we've hit our limit, quit
 			if ( 'all' != $atts['limit'] && $count >= $atts['limit'] ) {
 				break;
 			}
 
-			// Output our achievement image and title
 			$output .= '<div class="badgeos-badge-wrap">';
 			$output .= badgeos_get_achievement_post_thumbnail( $achievement_id, $thumbnail_size, $thumbnail_classes );
 			$output .= '<span class="badgeos-title-wrap">' . get_the_title( $achievement_id ) . '</span>';
 			$output .= '</div>';
 
-			// Increase our counter
 			$count ++;
 		}
 	}
