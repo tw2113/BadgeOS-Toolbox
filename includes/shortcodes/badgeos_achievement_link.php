@@ -9,7 +9,7 @@ function badgeos_toolkit_register_achievement_link_shortcode() {
 
 	badgeos_register_shortcode( array(
 		'name'            => __( 'Achievement Link', 'badgeos-toolkit' ),
-		'slug'            => 'achievement_link',
+		'slug'            => 'badgeos_toolkit_achievement_link',
 		'output_callback' => 'badgeos_toolkit_achievement_link_shortcode',
 		'description'     => __( 'Render an HTML link for an achievement.', 'badgeos-toolkit' ),
 		'attributes'      => array(
