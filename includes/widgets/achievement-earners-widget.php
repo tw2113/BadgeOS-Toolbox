@@ -94,39 +94,6 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 				'value' => $instance['achievement_ids']
 			)
 		);
-		?>
-			<p>
-				<label>
-					<input type="checkbox" id="<?php echo $this->get_field_name( 'point_total' ); ?>" name="<?php echo $this->get_field_name( 'point_total' ); ?>" <?php checked( $instance['point_total'], 'on' ); ?> />
-					<?php _e( 'Display user\'s total points', 'badgeos-toolkit' ); ?>
-				</label>
-			</p>
-			<p>
-				<?php _e( 'Display only the following Achievement Types:', 'badgeos-toolkit' ); ?><br />
-				<?php
-				$achievements = badgeos_get_achievement_types();
-				foreach ( $achievements as $achievement_slug => $achievement ) {
-
-					if ( $achievement['single_name'] == 'step' ) {
-						continue;
-					}
-
-					# if achievement displaying exists in the saved array it is enabled for display
-					$checked = checked( in_array( $achievement_slug, $set_achievements ), true, false );
-
-					printf(
-						'<label for="%s"><input type="checkbox" name="%s[]" id="%s" value="%s" %s /> %s</label><br/>',
-						$this->get_field_name( 'set_achievements' ) . '_' . esc_attr( $achievement_slug ),
-						$this->get_field_name( 'set_achievements' ),
-						$this->get_field_name( 'set_achievements' ) . '_' . esc_attr( $achievement_slug ),
-						esc_attr( $achievement_slug ),
-						$checked,
-						esc_html( ucfirst( $achievement[ 'plural_name' ] ) )
-					);
-				}
-				?>
-			</p>
-        <?php
 	}
 
 	/**
