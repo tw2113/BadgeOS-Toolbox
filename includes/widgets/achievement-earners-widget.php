@@ -88,10 +88,10 @@ class toolkit_achievement_earners_widget extends WP_Widget {
 		);
 		$this->form_input_text(
 			array(
-				'label' => __( 'Number to display (0 = all):', 'badgeos-toolkit'),
-				'name' => $this->get_field_name( 'number' ),
-				'id' => $this->get_field_id( 'number' ),
-				'value' => $instance['number']
+				'label' => __( 'Achievement IDs to display, separated by commas:', 'badgeos-toolkit'),
+				'name' => $this->get_field_name( 'achievement_ids' ),
+				'id' => $this->get_field_id( 'achievement_ids' ),
+				'value' => $instance['achievement_ids']
 			)
 		);
 		?>
